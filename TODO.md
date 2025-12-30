@@ -7,7 +7,7 @@ This file contains specific, actionable tasks optimized for an LLM to pick up an
 - [ ] **Refactor `Controller.ts`**: `src/core/controller/index.ts` is a massive class. Split it into smaller services (e.g., `TaskService`, `StateService`, `ConfigService`).
 - [ ] **Standardize Types**: Move duplicate type definitions found in `cli/pkg/common` and `src/shared` to a dedicated `packages/types` workspace if possible, or enforce strict imports.
 - [ ] **Cleanup `system-prompt`**: `src/core/prompts/system-prompt` has complex variant logic. Analyze if `TemplateEngine` can be simplified or if we can use a lighter-weight templating library.
-- [ ] **Promisify `fs`**: Ensure all file system operations use `fs/promises` consistently across the codebase.
+- [ ] **Promisify `fs`**: Ensure all file system operations use `fs/promises` consistently across the codebase. (Partially completed: `src/services/search/file-search.ts`, `src/services/test/TestMode.ts`, `src/core/controller/file/ifFileExistsRelativePath.ts` converted. Remaining usages in `src/standalone`, `src/services/auth`, `src/core/locks` require larger refactoring).
 
 ## Testing
 

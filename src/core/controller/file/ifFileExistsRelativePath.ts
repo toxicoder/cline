@@ -1,7 +1,7 @@
 import { workspaceResolver } from "@core/workspace"
 import { BooleanResponse, StringRequest } from "@shared/proto/cline/common"
 import { getWorkspacePath } from "@utils/path"
-import * as fs from "fs"
+import fs from "fs/promises"
 import { Controller } from ".."
 
 /**
@@ -33,7 +33,7 @@ export async function ifFileExistsRelativePath(_controller: Controller, request:
 	const absolutePath = typeof resolvedPath === "string" ? resolvedPath : resolvedPath.absolutePath
 	// Check if the file exists
 	try {
-		return BooleanResponse.create({ value: fs.statSync(absolutePath).isFile() })
+		return BooleanResponse.create({ value: (await fs.stat(absolutePath)).isFile() })
 	} catch {
 		return BooleanResponse.create({ value: false })
 	}

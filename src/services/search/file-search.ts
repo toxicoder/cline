@@ -1,6 +1,6 @@
 import type { WorkspaceRoot } from "@shared/multi-root/types"
 import * as childProcess from "child_process"
-import * as fs from "fs"
+import fs from "fs/promises"
 import type { FzfResultItem } from "fzf"
 import * as path from "path"
 import * as readline from "readline"
@@ -170,7 +170,7 @@ export async function searchWorkspaceFiles(
 				let type = item.type
 
 				try {
-					const stats = await fs.promises.lstat(fullPath)
+					const stats = await fs.lstat(fullPath)
 					type = stats.isDirectory() ? "folder" : "file"
 				} catch {
 					// Keep original type if path doesn't exist
