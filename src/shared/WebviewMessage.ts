@@ -1,8 +1,12 @@
-export interface WebviewMessage {
-	type: "grpc_request" | "grpc_request_cancel"
-	grpc_request?: GrpcRequest
-	grpc_request_cancel?: GrpcCancel
-}
+export type WebviewMessage =
+	| {
+			type: "grpc_request"
+			grpc_request: GrpcRequest
+	  }
+	| {
+			type: "grpc_request_cancel"
+			grpc_request_cancel: GrpcCancel
+	  }
 
 export type GrpcRequest = {
 	service: string

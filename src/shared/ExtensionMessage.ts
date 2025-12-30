@@ -1,4 +1,4 @@
-// type that represents json data that is sent from extension to webview, called ExtensionMessage and has 'type' enum which can be 'plusButtonClicked' or 'settingsButtonClicked' or 'hello'
+// type that represents json data that is sent from extension to webview, called ExtensionMessage
 
 import { WorkspaceRoot } from "@shared/multi-root/types"
 import { RemoteConfigFields } from "@shared/storage/state-keys"
@@ -17,10 +17,11 @@ import { OnboardingModelGroup } from "./proto/cline/state"
 import { Mode, OpenaiReasoningEffort } from "./storage/types"
 import { TelemetrySetting } from "./TelemetrySetting"
 import { UserInfo } from "./UserInfo"
+
 // webview will hold state
-export interface ExtensionMessage {
-	type: "grpc_response" // New type for gRPC responses
-	grpc_response?: GrpcResponse
+export type ExtensionMessage = {
+	type: "grpc_response"
+	grpc_response: GrpcResponse
 }
 
 export type GrpcResponse = {
