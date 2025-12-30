@@ -4,7 +4,7 @@
  * instead of relying on process.env which may not be consistent across different parts of the extension
  */
 
-import * as fs from "fs"
+import fs from "fs/promises"
 import * as path from "path"
 import * as vscode from "vscode"
 import { HostProvider } from "@/hosts/host-provider"
@@ -40,9 +40,12 @@ async function checkForTestMode(): Promise<boolean> {
 	// Check each workspace folder for an evals.env file
 	for (const folder of workspaceFolders.paths) {
 		const evalsEnvPath = path.join(folder, "evals.env")
-		if (fs.existsSync(evalsEnvPath)) {
+		try {
+			await fs.access(evalsEnvPath)
 			Logger.log(`Found evals.env file at ${evalsEnvPath}, activating test mode`)
 			return true
+		} catch {
+			// Continue checking other folders
 		}
 	}
 
