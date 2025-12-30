@@ -16,6 +16,7 @@ import { setLockManager } from "./lock-manager"
 import { PROTOBUS_PORT, startProtobusService } from "./protobus-service"
 import { log } from "./utils"
 import { initializeContext } from "./vscode-context"
+import { Logger } from "@/services/logging/Logger"
 
 let globalLockManager: SqliteLockManager | undefined
 
@@ -58,6 +59,8 @@ async function main() {
 
 		// The host bridge should be available before creating the host provider because it depends on the host bridge.
 		setupHostProvider(extensionContext, EXTENSION_DIR, DATA_DIR)
+
+		await Logger.initializeFileLogging("cline.log")
 
 		const webviewProvider = await initialize(extensionContext)
 

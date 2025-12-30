@@ -20,7 +20,7 @@ This file contains specific, actionable tasks optimized for an LLM to pick up an
 
 - [ ] **Better Error Handling**: Implement a centralized error handling service in `src/core/services/error` that categorizes errors (User, System, Network) and provides actionable advice.
 - [ ] **Typed Message Passing**: Improve type safety for messages between Webview and Extension. currently it uses string literals. Create a discriminated union of all allowed messages.
-- [ ] **Logging**: Enhance `Logger.ts` to support log levels (DEBUG, INFO, WARN, ERROR) and file rotation.
+- [x] **Logging**: Enhance `Logger.ts` to support log levels (DEBUG, INFO, WARN, ERROR) and file rotation.
 - [ ] **Config Validation**: Add Zod schemas for all configuration objects (VS Code settings, `.clinerules`, etc.) to fail fast on invalid config.
 
 ## Documentation

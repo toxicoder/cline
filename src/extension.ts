@@ -87,6 +87,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
 	const webview = (await initialize(context)) as VscodeWebviewProvider
 
+	await Logger.initializeFileLogging("cline.log")
 	Logger.log("Cline extension activated")
 
 	const testModeWatchers = await initializeTestMode(webview)
